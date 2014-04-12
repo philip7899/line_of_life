@@ -5,12 +5,13 @@ class PicturesController < ApplicationController
 	end
 
 	def create
-		@pic = Picture.new(picture_params)
-		if @pic.save
+		@uploaded_pic = Picture.new(picture_params)
+		if @uploaded_pic.save
 			puts 'picture saved'
 		else
 			puts 'save did not work'
 		end
+		@pic = Picture.new
 		render 'new'
 	end
 

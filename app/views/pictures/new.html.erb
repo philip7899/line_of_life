@@ -26,7 +26,11 @@
       <h2 class="page-header text-center">Uploaded Image</h2>
       <center>
         <div class="frame">
-         <%= image_tag '/assets/shapes/default.png', class: 'placeholder' %>
+          <% if @uploaded_pic %>
+            <%= image_tag @uploaded_pic.pic %>
+          <% else %>
+            <%= image_tag '/assets/shapes/default.png', class: 'placeholder' %>
+          <% end %>
         </div>
       </center>
         <%= form_for @pic do |f| %>
