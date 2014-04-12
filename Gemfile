@@ -34,6 +34,8 @@ end
 
 gem 'carrierwave'
 gem 'fog'
+gem "mini_magick"
+gem "mime-types"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
