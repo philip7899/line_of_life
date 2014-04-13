@@ -41,27 +41,35 @@
             <div id="centered">
               <div id="yellow" class="colors">
                <a href="" id="yellow"><%= image_tag "/assets/shapes/yellowshape.svg" %></a>
+               <%= f.radio_button :shape, :yellow_mask %>
               </div>
               <div id="pink" class="colors">
                 <%= image_tag "/assets/shapes/pinkshape.svg" %>
+                <%= f.radio_button :shape, :pink_mask %>
               </div>
               <div id="red" class="colors">
                 <%= image_tag "/assets/shapes/redshape.svg" %>
+                <%= f.radio_button :shape, :red_mask %>
               </div>
               <div id="blue" class="colors">
                 <%= image_tag "/assets/shapes/blueshape.svg" %>
+                <%= f.radio_button :shape, :blue_mask %>
               </div>
               <div id="green" class="colors">
                 <%= image_tag "/assets/shapes/greenshape.svg" %>
+                <%= f.radio_button :shape, :green_mask %>
               </div>
               <div id="purple" class="colors">
                 <%= image_tag "/assets/shapes/purpleshape.svg" %>
+                <%= f.radio_button :shape, :purple_mask %>
               </div>
               <div id="cyan" class="colors">
                 <%= image_tag "/assets/shapes/cyanshape.svg" %>
+                <%= f.radio_button :shape, :cyan_mask %>
               </div>
               <div id="orange" class="colors">
                 <%= image_tag "/assets/shapes/orangeshape.svg" %>
+                <%= f.radio_button :shape, :orange_mask %>
               </div>
             </div>
           </div>

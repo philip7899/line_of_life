@@ -66,15 +66,71 @@ class PicUploader < CarrierWave::Uploader::Base
 
   def image_tint_manipulation
     puts 'image manipulation'
+    puts 'pic here' + @uploaded_pic.to_s
     the_picture = MiniMagick::Image.open self.path
     #the_picture.resize "640x640"
     the_picture.format "png"
-    the_picture.combine_options do |c|
-      c.fill "rgb(90,255,255)"
-      c.tint "120"
+    puts 'model is ' + model.inspect.to_s
+    puts 'model shape is ' + model.shape.to_s
+    case model.shape
+      when 'yellow_mask'
+        the_picture.combine_options do |c|
+          c.fill "rgb(255,241,0)"
+          c.tint "120"
+        end
+        second_image = MiniMagick::Image.open "app/assets/images/yellow_mask.png"
+      when 'cyan_mask'
+        the_picture.combine_options do |c|
+          c.fill "rgb(90,255,255)"
+          c.tint "120"
+        end
+        second_image = MiniMagick::Image.open "app/assets/images/cyan_mask.png"
+    
+      when 'pink_mask'
+        the_picture.combine_options do |c|
+          c.fill "rgb(255,49,125)"
+          c.tint "120"
+        end
+        second_image = MiniMagick::Image.open "app/assets/images/pink_mask.png"
+
+      when 'red_mask'
+        the_picture.combine_options do |c|
+          c.fill "rgb(219,0,2)"
+          c.tint "120"
+        end
+        second_image = MiniMagick::Image.open "app/assets/images/red_mask.png"
+
+      when 'blue_mask'
+        puts 'inside the blue'
+        the_picture.combine_options do |c|
+          c.fill "rgb(0,4,169)"
+          c.tint "120"
+        end
+        second_image = MiniMagick::Image.open "app/assets/images/blue_mask.png"
+    
+      when 'green_mask'
+        the_picture.combine_options do |c|
+          c.fill "rgb(56,255,0)"
+          c.tint "120"
+        end
+        second_image = MiniMagick::Image.open "app/assets/images/green_mask.png"
+
+      when 'purple_mask'
+        the_picture.combine_options do |c|
+          c.fill "rgb(190,0,216)"
+          c.tint "120"
+        end
+        second_image = MiniMagick::Image.open "app/assets/images/purple_mask.png"
+
+      when 'orange_mask'
+        the_picture.combine_options do |c|
+          c.fill "rgb(255,106,11)"
+          c.tint "120"
+        end
+        second_image = MiniMagick::Image.open "app/assets/images/orange_mask.png"
     end
 
-    second_image = MiniMagick::Image.open "app/assets/images/cyan_mask.png"
+    
     puts 'howdy' + second_image.inspect.to_s
     result = the_picture.composite(second_image) do |c|
       c.compose "copy_opacity" # OverCompositeOp # copy second_image onto first_image from (20, 20)
