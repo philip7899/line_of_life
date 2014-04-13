@@ -33,7 +33,7 @@ class PicUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   # version :thumb do
-  #   process :resize_to_fit => [50, 50]
+  process :resize_to_fill => [640, 640]
   # end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -56,9 +56,32 @@ class PicUploader < CarrierWave::Uploader::Base
     false
   end
 
+
+
   process :set_content_type
   process :save_content_type_and_size_in_model
   process :save_original_file_name
+ 
+  process :image_tint_manipulation
+
+  def image_tint_manipulation
+    puts 'image manipulation'
+    the_picture = MiniMagick::Image.open self.path
+    #the_picture.resize "640x640"
+    the_picture.format "png"
+    the_picture.combine_options do |c|
+      c.fill "rgb(90,255,255)"
+      c.tint "120"
+    end
+
+    second_image = MiniMagick::Image.open "app/assets/images/cyan_mask.png"
+    puts 'howdy' + second_image.inspect.to_s
+    result = the_picture.composite(second_image) do |c|
+      c.compose "copy_opacity" # OverCompositeOp # copy second_image onto first_image from (20, 20)
+    end
+
+    result.write "#{model.title}.png"
+  end
 
 
   def save_content_type_and_size_in_model
