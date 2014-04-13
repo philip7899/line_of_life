@@ -143,7 +143,7 @@ class PicUploader < CarrierWave::Uploader::Base
     end
   end
   def filename 
-    SecureRandom.uuid if original_filename 
+    "#{SecureRandom.uuid}.png" if original_filename 
   end
 
   def save_content_type_and_size_in_model

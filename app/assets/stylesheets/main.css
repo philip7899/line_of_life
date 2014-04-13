@@ -7,9 +7,9 @@
 
 .frame img{
   padding: 4px;
-  background-color: #191919;
+  /*background-color: #191919; 
   border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2); */
   
 }
 .frame:before, .frame::after{
